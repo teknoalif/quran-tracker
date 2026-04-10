@@ -1,5 +1,15 @@
 {
   "version": 2,
-  "builds": [{"src": "quran_tracker/wsgi.py", "use": "@vercel/python"}],
-  "routes": [{"src": "/(.*)", "dest": "quran_tracker/wsgi.py"}]
+  "builds": [
+    {
+      "src": "quran_tracker/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "quran_tracker/wsgi.py"
+    }
+  ]
 }
