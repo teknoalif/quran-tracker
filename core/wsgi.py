@@ -1,7 +1,18 @@
 import os
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'quran_tracker.settings')
 application = get_wsgi_application()
-app = application # Tambahkan baris ini agar Vercel mengenalnya
+
+try:
+    from django.contrib.auth.models import User
+    if not User.objects.filter(username='alif').exists():
+        User.objects.create_superuser('alif', 'admin@kakalif.my.id', 'alif')
+    users = ['nurmawan', 'reza', 'agung', 'priyo', 'umar', 'rifqi']
+    for u in users:
+        if not User.objects.filter(username=u).exists():
+            User.objects.create_user(username=u, password=u)
+except Exception:
+    pass
+
+app = application
